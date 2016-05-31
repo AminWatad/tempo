@@ -4,7 +4,7 @@
 ##Additional Features
 
 ###Precedence Operators
-In addition to logical operators such as && || and ; in the original bash, **rshell** also emulates bash with its precedence operators, or parentheses. The parentheses () operators are used to change the priority of certain commands in a single line, altering whether certain commands are executed.
+In addition to logical operators such as `&&`, `||` and `;` in the original bash, **rshell** also emulates bash with its precedence operators, or parentheses. The parentheses () operators are used to change the priority of certain commands in a single line, altering whether certain commands are executed.
 
 For example, while
 `$ echo A && echo B || echo C && echo D`
@@ -36,7 +36,7 @@ There are two ways to format the test command, both of which will return the sam
 `$ test -e test/file/path` or  
 `$ [ -e test/file/path ]`
 
-In addition, the test command works with all logic operators and precedence operators (). 
+In addition, the test command works with all logical operators and precedence operators (). 
 
 ##Installation
 To load the program, run the following code in your terminal:
