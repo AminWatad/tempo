@@ -5,6 +5,7 @@ using namespace std;
 class Base {
 	private:
 		bool success;
+        bool executed;
 	public:
 		Base() {};
         virtual ~Base() {};
@@ -20,5 +21,11 @@ class Base {
 
 			success = input;
 		}
+        void setExecuted(bool hi) {
+            executed = hi;
+        }
+        bool getExecuted() {
+            return executed;
+        }
 };
 #endif

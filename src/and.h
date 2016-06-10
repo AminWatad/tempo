@@ -25,6 +25,7 @@ class And: public Base{
 
 			if (child1->getSuccess())
 			{
+                //if child1 succeeds, child 2 is executed
                 if (child2->getExecutable() != "exit") {
 				    child2->execute();
                     this->setSuccess(child2->getSuccess());
@@ -44,6 +45,7 @@ class And: public Base{
 			
 		}
         string getExecutable() {
+            //in case the command was exit
             return child2->getExecutable();
         }
 

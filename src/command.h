@@ -17,21 +17,20 @@ class Command: public Base{
 
 	private:
 		string executable; //private variables
-        bool executed;
 
 	public:
 		Command(string input){ //constructor
 		    executable = input;
             this->setSuccess(false); //in default success is false
-            executed = false;
+            this->setExecuted(false);
             return;
 		}
         void execute() {
             //executes the cmd, and changes success depending on status
-            if (!executed) {
+            if (!this->getExecuted()) {
                 if (this->cmdExecute() != 2) {this->setSuccess(false);}
                 else {this->setSuccess(true);}
-                executed = true;
+                this->setExecuted(true);
             }
         }
 
@@ -56,8 +55,12 @@ class Command: public Base{
             char testing[] = "test";
             char exitCheck[] = "exit";
             string option;
+            //if the command was exit, nothing is done
             if (strcmp(cmds[0], exitCheck) == 0) return 2;
+            //a special case to handle test command
             else if (strcmp(cmds[0],testing) == 0) {
+                //these conditions set the success depending on the option
+                //passed by the user
                 if (counter < 3) option = "-e";
                 else option = cmds[1];
                 struct stat buf;
@@ -90,10 +93,13 @@ class Command: public Base{
                     }
                 }
             }
+            //handles the test command between [ ]
             else if (strncmp(cmds[0],"[",1) == 0) {
+                //if no option was passed, -e is set by default
+                //and then we set success depending on the option
                 if (counter < 4) option = "-e";
                 else option = cmds[1];
-                struct stat buf;
+                struct stat buf; //stat returns information about path
                 if (stat(cmds[counter - 2], &buf) == -1) {
                     cout << "(False)" << endl;
                     return 1;
